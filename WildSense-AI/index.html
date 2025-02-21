@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WildSense AI - Advanced Wildlife Detection</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="gradient-text">WildSense AI</h1>
+                <p>Advanced wildlife detection powered by artificial intelligence. 
+                   Real-time monitoring and analysis for wildlife researchers and enthusiasts.</p>
+                <div class="hero-buttons">
+                    <button class="btn primary pulse-animation" onclick="scrollToDemo()">Try Demo</button>
+                    <button class="btn secondary">
+                        Learn more 
+                        <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-header">
+                <h2>Cutting-Edge Detection Features</h2>
+                <p class="subtitle">Powered by state-of-the-art AI technology</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-header">
+                        <i data-feather="eye" class="icon blue"></i>
+                        <h3>Multiple Species Detection</h3>
+                    </div>
+                    <p>Advanced AI capable of identifying diverse wildlife species with high accuracy</p>
+                    <div class="feature-stats">
+                        <span>99.5% Accuracy</span>
+                        <span>100+ Species</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-header">
+                        <i data-feather="play-circle" class="icon green"></i>
+                        <h3>Video Processing</h3>
+                    </div>
+                    <p>Upload and analyze wildlife videos with our state-of-the-art detection model</p>
+                    <div class="feature-stats">
+                        <span>4K Support</span>
+                        <span>Real-time Processing</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-header">
+                        <i data-feather="camera" class="icon purple"></i>
+                        <h3>Live Camera Detection</h3>
+                    </div>
+                    <p>Connect your RTSP stream for immediate wildlife monitoring and alerts</p>
+                    <div class="feature-stats">
+                        <span>24/7 Monitoring</span>
+                        <span>Instant Alerts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detection Modes Section -->
+        <section class="detection-modes">
+            <div class="section-header">
+                <h2>Choose Your Detection Mode</h2>
+                <p class="subtitle">Multiple ways to utilize our AI detection system</p>
+            </div>
+            <div class="modes-container">
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="upload">
+                        <i data-feather="upload"></i>
+                        Video Upload
+                    </button>
+                    <button class="mode-btn" data-mode="camera">
+                        <i data-feather="camera"></i>
+                        Live Camera
+                    </button>
+                    <button class="mode-btn" data-mode="rtsp">
+                        <i data-feather="video"></i>
+                        RTSP Stream
+                    </button>
+                </div>
+
+                <!-- Upload Mode -->
+                <div class="mode-content active" id="upload-mode">
+                    <div class="upload-container" id="dropZone">
+                        <input type="file" id="fileInput" accept="video/*" hidden>
+                        <i data-feather="upload" class="upload-icon"></i>
+                        <p>Drag and drop your video here, or click to select</p>
+                        <button class="btn primary" id="uploadBtn">Upload Video</button>
+                    </div>
+                    
+                    <div class="preview-container" id="previewContainer">
+                        <div class="video-container">
+                            <div class="video-wrapper">
+                                <h4>Original Video</h4>
+                                <video id="originalVideo" controls></video>
+                            </div>
+                            <div class="video-wrapper">
+                                <h4>Processed Video</h4>
+                                <video id="processedVideo" controls></video>
+                            </div>
+                        </div>
+                        <div class="detection-info" id="detectionInfo"></div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar">
+                                <div class="progress" id="progress"></div>
+                            </div>
+                            <span class="progress-text">Processing: <span id="progressText">0%</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Mode -->
+                <div class="mode-content" id="camera-mode">
+                    <div class="camera-container">
+                        <video id="cameraFeed" autoplay playsinline></video>
+                        <canvas id="detectionCanvas"></canvas>
+                        <div class="camera-controls">
+                            <button class="btn primary" id="startCamera">
+                                <i data-feather="video"></i>
+                                Start Camera
+                            </button>
+                            <button class="btn secondary" id="captureSnapshot">
+                                <i data-feather="camera"></i>
+                                Capture
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RTSP Mode -->
+                <div class="mode-content" id="rtsp-mode">
+                    <div class="rtsp-container">
+                        <div class="rtsp-form">
+                            <input type="text" id="rtspUrl" placeholder="Enter RTSP URL (e.g., rtsp://username:password@ip:port/stream)">
+                            <button class="btn primary" id="connectRtsp">Connect Stream</button>
+                        </div>
+                        <div class="stream-container">
+                            <video id="rtspStream" autoplay></video>
+                            <canvas id="rtspDetectionCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="use-cases">
+            <div class="section-header">
+                <h2>Versatile Applications</h2>
+                <p class="subtitle">Beyond wildlife detection</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <i data-feather="shield" class="icon red"></i>
+                    <h3>Home Security</h3>
+                    <p>Integrate with your security system for intelligent intrusion detection and alerts</p>
+                </div>
+                <div class="use-case-card">
+                    <i data-feather="map" class="icon orange"></i>
+                    <h3>Regional Wildlife Training</h3>
+                    <p>Customize detection models for specific geographical regions and species</p>
+                </div>
+                <div class="use-case-card">
+                    <i data-feather="truck" class="icon blue"></i>
+                    <h3>Vehicle Monitoring</h3>
+                    <p>Advanced number plate recognition for traffic management and security</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="section-header">
+                <h2>Success Stories</h2>
+                <p class="subtitle">What our users say about WildSense AI</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/640/480" alt="National Park" class="testimonial-image">
+                        <div class="testimonial-content">
+                            <p>"Revolutionized our wildlife monitoring program. The real-time detection has helped us protect endangered species."</p>
+                            <h4>National Park Service</h4>
+                            <span>Wildlife Conservation Team</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/640/480" alt="Security Company" class="testimonial-image">
+                        <div class="testimonial-content">
+                            <p>"Integrated perfectly with our security systems. The AI detection has significantly reduced false alarms."</p>
+                            <h4>SecureHome Systems</h4>
+                            <span>Security Solutions Provider</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="https://picsum.photos/640/480" alt="Traffic Management" class="testimonial-image">
+                        <div class="testimonial-content">
+                            <p>"The number plate recognition accuracy is outstanding. Has greatly improved our traffic monitoring efficiency."</p>
+                            <h4>Metropolitan Traffic Authority</h4>
+                            <span>Traffic Management Division</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-btn prev" id="prevTestimonial">
+                        <i data-feather="chevron-left"></i>
+                    </button>
+                    <button class="testimonial-btn next" id="nextTestimonial">
+                        <i data-feather="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card" data-aos="fade-up">
+                    <i class="fas fa-paw stat-icon"></i>
+                    <h3 class="stat-number" data-target="21">0</h3>
+                    <p class="stat-label">Species Detected</p>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-chart-line stat-icon"></i>
+                    <h3 class="stat-number" data-target="95">0</h3>
+                    <p class="stat-label">Detection Accuracy</p>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-video stat-icon"></i>
+                    <h3 class="stat-number" data-target="100">0</h3>
+                    <p class="stat-label">Videos Processed</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="college-info">
+                    <img src="images/gvp_logo.jpg" alt="College Logo" class="college-banner">
+                </div>
+                <div class="project-details">
+                    <h2>GAYATRI VIDYA PARISHAD COLLEGE OF ENGINEERING(A)</h2>
+                    <h3>Project Team</h3>
+                    <div class="team-members">
+                        <div class="member-card">
+                            <h4>G.NEERAJA</h4>
+                        </div>
+                        <div class="member-card">
+                            <h4>K.PAVAN KUMAR</h4>
+                        </div>
+                        <div class="member-card">
+                            <h4>M.RAKESH REDDY</h4>
+                        </div>
+                        <div class="member-card">
+                            <h4>J.VENKAT SUHAS</h4>
+                        </div>
+                        <!-- Add more team members as needed -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!-- code for SAVE_ME -->
+
+    <!-- Add this to your body section -->
+   <!-- Wildlife Assistant -->
+    <div class="wildlife-assistant">
+        <button class="wildlife-assistant-btn">
+            <i data-feather="camera" class="wildlife-assistant-icon"></i>
+        </button>
+        <div class="wildlife-assistant-modal">
+            <div class="wildlife-assistant-header">
+                <h3>Wildlife Identifier</h3>
+                <button class="wildlife-assistant-close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="wildlife-assistant-content">
+                <div class="wildlife-assistant-options">
+                    <button class="wildlife-assistant-option camera">
+                        <i data-feather="camera"></i>
+                        Take Photo
+                    </button>
+                    <button class="wildlife-assistant-option upload">
+                        <i data-feather="upload"></i>
+                        Upload Photo
+                    </button>
+                </div>
+                <div class="wildlife-assistant-preview">
+                    <video id="wildlife-camera" autoplay playsinline style="display: none;"></video>
+                    <canvas id="wildlife-canvas" style="display: none;"></canvas>
+                    <div id="wildlife-image-preview"></div>
+                </div>
+                <input type="file" id="wildlife-file-input" accept="image/*" hidden>
+                <div class="wildlife-assistant-result" style="display: none;">
+                    <div class="wildlife-info">
+                        <h4>Analysis Results</h4>
+                        <div id="wildlife-details"></div>
+                    </div>
+                    <button class="btn primary wildlife-new-capture">
+                        Identify Another Animal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
