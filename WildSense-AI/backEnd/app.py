@@ -67,8 +67,8 @@ LiveDetectionModel = YOLO("model/yolov8m.pt")
 active_sessions = {}
 
 # Telegram Bot Config
-TELEGRAM_BOT_TOKEN = "7223715274:AAH0iG8VPlZS8rahqhl8SW_OZ18GJ0CYJbk"
-TELEGRAM_CHAT_ID = "-1002425665342"  # User to receive video
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = ""  # User to receive video
 
 
 class VideoProcessor:
@@ -381,7 +381,7 @@ def camera_stream():
 
 
 # Replace with your actual API key
-GEMINI_API_KEY = "AIzaSyDUcz-0vu_zpp_P2GG0Sr3g1OTN6HCgcxc"
+GEMINI_API_KEY = ""
 genai.configure(api_key=GEMINI_API_KEY)
 
 class WildlifeIdentificationService:
