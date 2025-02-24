@@ -1,0 +1,9 @@
+pip~=25.0.1
+opencv-python~=4.11.0.86
+numpy~=1.26.4
+requests~=2.32.3
+mysql~=0.0.3
+mysql-connector-python~=9.2.0
+Flask~=3.1.0
+ultralytics~=8.3.75
+pillow~=10.3.0

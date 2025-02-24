@@ -58,7 +58,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 
 # Load YOLO model
-model = YOLO("model/model_yolov11l_epoch_90_100.pt")
+model = YOLO("model/WL-Yolov11.pt")
 
 #Model for Live detection stream through camera
 LiveDetectionModel = YOLO("model/yolov8m.pt")
